@@ -1,0 +1,82 @@
+<DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="styles.css">
+	</head>	
+	<body>
+		<div id="menu">
+			<header>
+			
+				<img class="logo" src="images/logo.png" alt="logo">
+				<nav>
+					<ul class="nav__links">
+						<li><a href="/" class="navigation-link">Home</a></li>
+						<li><a href="/products" class="navigation-link login product">Products</a></li>
+						<li><a href="#" class="navigation-link login product">Resources</a></li>
+						<li><a href="/login" class="navigation-link login product">Login</a></li>
+					</ul>
+				</nav>
+				<a class="cta" href="/bridgebit-signup"><button>Sign Up</button></a>
+			
+			</header>
+		</div>
+		<h1>Accepted Agreements</h1>
+			<script>
+				getData();
+				async function getData() {
+					const response = await fetch('/api');
+					const data = await response.json();
+					
+					const table = document.createElement('table');
+          			const thead = document.createElement('thead');
+          			const tbody = document.createElement('tbody');
+          			
+          			table.appendChild(thead);
+          			table.appendChild(tbody);
+
+          			//Create the headers
+			        const headers = document.createElement('tr');
+			          
+			        //Create the header and set the text (innerHTML)
+			        const heading_1 = document.createElement('th');
+			        heading_1.innerHTML = 'TITLE';
+			        const heading_2 = document.createElement('th');
+			        heading_2.innerHTML = 'VERSION';
+			        const heading_3 = document.createElement('th');
+			        heading_3.innerHTML = 'DATE SIGNED';
+			        const heading_4 = document.createElement('th');
+			        heading_4.innerHTML = 'FILE';
+
+
+			        headers.appendChild(heading_1);
+          			headers.appendChild(heading_2);
+          			headers.appendChild(heading_3);
+          			headers.appendChild(heading_4);
+          			thead.appendChild(headers);
+
+					for (item of data.obj.data) {
+						const tableRow = table.insertRow();
+						const title = tableRow.insertCell();
+						const version = tableRow.insertCell();
+            			const date = tableRow.insertCell();
+            			const downloadLink = tableRow.insertCell();
+
+            			title.appendChild(document.createTextNode(item.contract.title));
+
+						version.appendChild(document.createTextNode(item.version.full_version_number));
+
+						const dateString = new Date(item.created_time).toLocaleString();
+            			date.appendChild(document.createTextNode(dateString)); 
+
+            			const url = document.createElement('a');
+            			url.setAttribute('href', item.download_url);
+            			url.innerHTML = 'Download';
+            			downloadLink.appendChild(url);
+						
+					}
+
+					document.body.append(table);
+				}
+			</script>
+	</body>
+</html>

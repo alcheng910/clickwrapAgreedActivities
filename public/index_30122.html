@@ -1,0 +1,63 @@
+<DOCTYPE html>
+<html lang="en">
+	<body>
+		<h1>Ironclad Clickwrap Agreements</h1>
+			<script>
+				getData();
+				async function getData() {
+					const response = await fetch('/api');
+					const data = await response.json();
+					
+					const table = document.createElement('table');
+          			const thead = document.createElement('thead');
+          			const tbody = document.createElement('tbody');
+          
+          			table.appendChild(thead);
+          			table.appendChild(tbody);
+
+          			//Create the headers
+			        const headers = document.createElement('tr');
+			          
+			        //Create the header and set the text (innerHTML)
+			        const heading_1 = document.createElement('th');
+			        heading_1.innerHTML = 'Title';
+			        const heading_2 = document.createElement('th');
+			        heading_2.innerHTML = 'Version';
+			        const heading_3 = document.createElement('th');
+			        heading_3.innerHTML = 'Date Signed';
+			        const heading_4 = document.createElement('th');
+			        heading_4.innerHTML = 'File';
+
+
+			        headers.appendChild(heading_1);
+          			headers.appendChild(heading_2);
+          			headers.appendChild(heading_3);
+          			headers.appendChild(heading_4);
+          			thead.appendChild(headers);
+
+					for (item of data.obj.data) {
+						const tableRow = table.insertRow();
+						const title = tableRow.insertCell();
+						const version = tableRow.insertCell();
+            			const date = tableRow.insertCell();
+            			const downloadLink = tableRow.insertCell();
+
+            			title.appendChild(document.createTextNode(item.contract.title));
+
+						version.appendChild(document.createTextNode(item.version.full_version_number));
+
+						const dateString = new Date(item.created_time).toLocaleString();
+            			date.appendChild(document.createTextNode(dateString)); 
+
+            			const url = document.createElement('a');
+            			url.setAttribute('href', item.download_url);
+            			url.innerHTML = 'Download';
+            			downloadLink.appendChild(url);
+						
+					}
+
+					document.body.append(table);
+				}
+			</script>
+	</body>
+</html>
