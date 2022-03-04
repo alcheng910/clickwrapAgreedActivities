@@ -12,7 +12,8 @@ const options = {
   }
 };
 
-app.listen(3000, () => console.log('listening at 3000'));
+const port = process.env.PORT || 80
+
 app.use(express.static('public'));
 
 var obj;

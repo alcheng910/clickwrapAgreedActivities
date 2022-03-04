@@ -84,11 +84,17 @@ table {
 	min-width:  800px;
 	padding-left: 10%;
 	line-height: 30px;
+	width: 90%;
 
 }
 
 thead, tbody {
 	text-align: left;
+}
+
+thead th {
+	color: #72757B;
+	border-bottom: 1px solid #D3D3D3;
 }
 
 
