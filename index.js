@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
+const PORT = process.env.PORT || 5000;
 
 const url = 'https://api.pactsafe.com/v1.1/sites/16489/signers/id:alvin.cheng%40ironcladapp.com/activity?expand=contract,version&filter=event_type==agreed';
 const options = {
@@ -12,7 +13,7 @@ const options = {
   }
 };
 
-const port = process.env.PORT || 5000
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 app.use(express.static('public'));
 
