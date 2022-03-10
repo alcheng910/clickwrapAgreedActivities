@@ -21,63 +21,79 @@
 			
 			</header>
 		</div>
-		<h1>Accepted Agreements</h1>
-			<script>
-				getData();
-				async function getData() {
-					const response = await fetch('/api');
-					const data = await response.json();
-					
-					const table = document.createElement('table');
-          			const thead = document.createElement('thead');
-          			const tbody = document.createElement('tbody');
-          			
-          			table.appendChild(thead);
-          			table.appendChild(tbody);
+		<div class ="main">
+			<div class="sidemenu">
+				<a>GENERAL</a>
+				<a>PAYMENT MANAGEMENT</a>
+				<a>SUBSCRIPTIONS</a>
+				<a>TRANSACTIONS</a>
+				<a><b>AGREEMENT HISTORY</b></a>
+				<a>SECURITY</a>
+				<a>SUPPORT</a>
+			</div>
+			
+			<div class="body" id="mainBody">
 
-          			//Create the headers
-			        const headers = document.createElement('tr');
-			          
-			        //Create the header and set the text (innerHTML)
-			        const heading_1 = document.createElement('th');
-			        heading_1.innerHTML = 'TITLE';
-			        const heading_2 = document.createElement('th');
-			        heading_2.innerHTML = 'VERSION';
-			        const heading_3 = document.createElement('th');
-			        heading_3.innerHTML = 'DATE SIGNED';
-			        const heading_4 = document.createElement('th');
-			        heading_4.innerHTML = 'FILE';
+				<h1>END USER LICENSE AGREEMENT HISTORY</h1>
+				<p1>View and download license agreements you've accepted</p1>
+					<script>
+						getData();
+						async function getData() {
+							const response = await fetch('/api');
+							const data = await response.json();
+							
+							const newDiv = document.createElement("div");
+							const table = document.createElement('table');
+		          			const thead = document.createElement('thead');
+		          			const tbody = document.createElement('tbody');
+		          			
+		          			table.appendChild(thead);
+		          			table.appendChild(tbody);
+
+		          			//Create the headers
+					        const headers = document.createElement('tr');
+					          
+					        //Create the header and set the text (innerHTML)
+					        const heading_1 = document.createElement('th');
+					        heading_1.innerHTML = 'TITLE';
+					        const heading_2 = document.createElement('th');
+					        heading_2.innerHTML = 'VERSION';
+					        const heading_3 = document.createElement('th');
+					        heading_3.innerHTML = 'DATE SIGNED';
+					        const heading_4 = document.createElement('th');
+					        heading_4.innerHTML = 'FILE';
 
 
-			        headers.appendChild(heading_1);
-          			headers.appendChild(heading_2);
-          			headers.appendChild(heading_3);
-          			headers.appendChild(heading_4);
-          			thead.appendChild(headers);
+					        headers.appendChild(heading_1);
+		          			headers.appendChild(heading_2);
+		          			headers.appendChild(heading_3);
+		          			headers.appendChild(heading_4);
+		          			thead.appendChild(headers);
 
-					for (item of data.obj.data) {
-						const tableRow = table.insertRow();
-						const title = tableRow.insertCell();
-						const version = tableRow.insertCell();
-            			const date = tableRow.insertCell();
-            			const downloadLink = tableRow.insertCell();
+							for (item of data.obj.data) {
+								const tableRow = table.insertRow();
+								const title = tableRow.insertCell();
+								const version = tableRow.insertCell();
+		            			const date = tableRow.insertCell();
+		            			const downloadLink = tableRow.insertCell();
 
-            			title.appendChild(document.createTextNode(item.contract.title));
+		            			title.appendChild(document.createTextNode(item.contract.title));
 
-						version.appendChild(document.createTextNode(item.version.full_version_number));
+								version.appendChild(document.createTextNode(item.version.full_version_number));
 
-						const dateString = new Date(item.created_time).toLocaleString();
-            			date.appendChild(document.createTextNode(dateString)); 
+								const dateString = new Date(item.created_time).toLocaleString();
+		            			date.appendChild(document.createTextNode(dateString)); 
 
-            			const url = document.createElement('a');
-            			url.setAttribute('href', item.download_url);
-            			url.innerHTML = 'Download';
-            			downloadLink.appendChild(url);
-						
-					}
-
-					document.body.append(table);
-				}
-			</script>
+		            			const url = document.createElement('a');
+		            			url.setAttribute('href', item.download_url);
+		            			url.innerHTML = 'Download';
+		            			downloadLink.appendChild(url);
+								
+							}
+							mainBody.append(table);
+						}
+					</script>
+			</div>
+		</div>
 	</body>
 </html>

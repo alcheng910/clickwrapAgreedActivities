@@ -1,6 +1,13 @@
 @import url('https //fonts.googleapis.com/css family=arial');
 
-.menu header{
+* {
+	box-sizing: border-box;
+	margin:  0;
+	padding: 0;
+	background-color: #FFFFFF;
+}
+
+#menu {
   border-bottom: 1px solid #D3D3D3;
   background-color: #fff;
 }
@@ -26,7 +33,6 @@ header {
 	justify-content:  flex-end;
 	align-items: center;
 	padding: 30px 10%;
-	border-bottom: 1px solid #D3D3D3;
 }
 
 .logo {
@@ -62,39 +68,12 @@ button {
 	transition: all 0.3s ease 0s;
 }
 
-.main {
-	width: 100%;
-	height:  100vh;
-	display: flex;
-}
-
-.sidemenu {
-	width: 15%;
-	background-color: #fff;
-	padding: 30px 0px 30px 10%;
-	border-right: 1px solid #D3D3D3;
-}
-
-.sidemenu a {
-	margin-right: auto;
-	font-family:  "arial";
-	text-decoration: none;
-	color:  #939799;
-	font-size: 12px;
-	letter-spacing: 2px;
-	display:  list-item;
-	list-style-type: none;
-	padding:  20px;
-
-}
-
 h1 {
 	margin-right: auto;
 	font-family:  "arial"; 
 	font-weight 500;
 	font-size: 26px;
-	padding: 20px 10% 5px 20px;
-	width: 100%;
+	padding: 30px 10% 10px 10%;
 
 }
 
@@ -103,7 +82,7 @@ p1 {
 	font-family:  "arial"; 
 	font-weight 500;
 	font-size: 14px;
-	padding-left: 40px;
+	padding-left: 10%;
 	color: #939799;
 }
 
@@ -111,11 +90,11 @@ table {
 	font-family:  "arial"; 
 	font-weight 500;
 	font-size: 14px;
-	min-width:  900px;
+	min-width:  800px;
 	padding-top: 25px;
-	padding-left: 40px;
+	padding-left: 10%;
 	line-height: 30px;
-	width: 80%;
+	width: 90%;
 
 }
 
